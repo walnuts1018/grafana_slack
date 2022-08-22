@@ -104,14 +104,14 @@ grafana_dict={
 def handle_message_events(message, say):
     if "Resolved" in message["attachments"][0]["text"]:
         pass
-    elif "cpu_all = high" in message["attachments"][0]["text"]:
+    elif ("cpu = high" in message["attachments"][0]["text"]):
         print("cpu")
         picpath = capture_grafana(grafana_dict["cpu"])
     elif "mem = high" in message["attachments"][0]["text"]:
         print("mem")
         picpath = capture_grafana(grafana_dict["mem"])
     elif "load = high" in message["attachments"][0]["text"]:
-        print("cpu")
+        print("load")
         picpath = capture_grafana(grafana_dict["load"])
     elif "alertname = TestAlert" in message["attachments"][0]["text"]:
         print("alert test")
