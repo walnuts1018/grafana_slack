@@ -23,7 +23,7 @@ def git_push():
 
     #Commit(サブディレクトリ含めて全て)
     repo.git.add('.')
-    repo.git.commit('.','-m','[add] Grafama images')
+    repo.git.commit('.','-m','[add] Grafana images')
 
     #Push
     origin = repo.remote(name='origin')
@@ -150,7 +150,7 @@ def handle_message_events(message, say):
         })
 
 @app.command("/sys")
-def grafama(ack, respond, command, say):
+def grafana(ack, respond, command, say):
     ack()
     userInput = command['text'].split()
     #print(command)
