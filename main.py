@@ -83,26 +83,29 @@ grafana_dict={
         "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=7&kiosk",
         "name": "grafana_cpu",
         "size": (1075, 400),
-        "sleep": 5
+        "sleep": 10
     },
     "mem": {
         "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=156&kiosk",
         "name": "grafana_mem",
         "size": (1075, 400),
-        "sleep": 5
+        "sleep": 10
     },
     "load": {
         "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&kiosk",
         "name": "grafana_load",
         "size": (1075, 400),
-        "sleep": 5
+        "sleep": 10
     }
     
 }
 
 @app.event("message")
 def handle_message_events(message, say):
-    if "Resolved" in message["attachments"][0]["text"]:
+    if  (not ("attachments" in message)):
+        print("a")
+        pass
+    elif ("Resolved" in message["attachments"][0]["text"]):
         pass
     elif ("cpu = high" in message["attachments"][0]["text"]):
         print("cpu")
