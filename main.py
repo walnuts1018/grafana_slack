@@ -82,15 +82,163 @@ grafana_dict={
         "name": "grafana_short",
         "size": (1075, 400),
         "sleep": 5
+    },
+    "cpu": {
+        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=7&kiosk",
+        "name": "grafana_cpu",
+        "size": (1075, 400),
+        "sleep": 2
+    },
+    "mem": {
+        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=156&kiosk",
+        "name": "grafana_mem",
+        "size": (1075, 400),
+        "sleep": 2
+    },
+    "load": {
+        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&kiosk",
+        "name": "grafana_load",
+        "size": (1075, 400),
+        "sleep": 2
     }
+    
 }
 
 @app.event("message")
-def handle_message_events(body, logger):
-    pass
+def handle_message_events(message, say):
+    if "cpu_all = high" in message["attachments"][0]["text"]:
+        print("cpu")
+        picpath = capture_grafana(grafana_dict["cpu"])
+        git_push()
+    elif "mem = high" in message["attachments"][0]["text"]:
+        print("mem")
+        picpath = capture_grafana(grafana_dict["mem"])
+        git_push()
+    elif "load = high" in message["attachments"][0]["text"]:
+        print("cpu")
+        picpath = capture_grafana(grafana_dict["load"])
+        git_push()
+    elif "alertname = TestAlert" in message["attachments"][0]["text"]:
+        print("alert test")
+        picpath = capture_grafana(grafana_dict["cpu"])
+        git_push()
+        say({
+            "attachments": [{
+                "color": "#D63232",
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "image",
+                        "title": {
+                            "type": "plain_text",
+                            "text": picpath[0],
+                            "emoji": True
+                        },
+                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
+                        "alt_text": picpath[0]
+                    }
+                ]
+            }]
+        })
+        picpath = capture_grafana(grafana_dict["mem"])
+        git_push()
+        say({
+            "attachments": [{
+                "color": "#D63232",
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "image",
+                        "title": {
+                            "type": "plain_text",
+                            "text": picpath[0],
+                            "emoji": True
+                        },
+                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
+                        "alt_text": picpath[0]
+                    }
+                ]
+            }]
+        })
+        picpath = capture_grafana(grafana_dict["load"])
+        git_push()
+        say({
+            "attachments": [{
+                "color": "#D63232",
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "image",
+                        "title": {
+                            "type": "plain_text",
+                            "text": picpath[0],
+                            "emoji": True
+                        },
+                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
+                        "alt_text": picpath[0]
+                    }
+                ]
+            }]
+        })
+    else:
+        pass
+    say({
+            "attachments": [{
+                "color": "#D63232",
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
+                        }
+                    },
+                    {
+                        "type": "divider"
+                    },
+                    {
+                        "type": "image",
+                        "title": {
+                            "type": "plain_text",
+                            "text": picpath[0],
+                            "emoji": True
+                        },
+                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
+                        "alt_text": picpath[0]
+                    }
+                ]
+            }]
+        })
 
 @app.command("/sys")
-def todo(ack, respond, command, say):
+def grafama(ack, respond, command, say):
     ack()
     userInput = command['text'].split()
     #print(command)
