@@ -20,11 +20,7 @@ app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
 
 def git_push():
     repo = git.Repo()
-
-    #最新を取り込むため一旦Pull
-    o = repo.remotes.origin
-    o.pull()
-
+    
     #Commit(サブディレクトリ含めて全て)
     repo.git.add('.')
     repo.git.commit('.','-m','[add] Grafama images')
@@ -109,106 +105,18 @@ def handle_message_events(message, say):
     if "cpu_all = high" in message["attachments"][0]["text"]:
         print("cpu")
         picpath = capture_grafana(grafana_dict["cpu"])
-        git_push()
     elif "mem = high" in message["attachments"][0]["text"]:
         print("mem")
         picpath = capture_grafana(grafana_dict["mem"])
-        git_push()
     elif "load = high" in message["attachments"][0]["text"]:
         print("cpu")
         picpath = capture_grafana(grafana_dict["load"])
-        git_push()
     elif "alertname = TestAlert" in message["attachments"][0]["text"]:
         print("alert test")
         picpath = capture_grafana(grafana_dict["cpu"])
-        git_push()
-        say({
-            "attachments": [{
-                "color": "#D63232",
-                "blocks": [
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
-                        }
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "image",
-                        "title": {
-                            "type": "plain_text",
-                            "text": picpath[0],
-                            "emoji": True
-                        },
-                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
-                        "alt_text": picpath[0]
-                    }
-                ]
-            }]
-        })
-        picpath = capture_grafana(grafana_dict["mem"])
-        git_push()
-        say({
-            "attachments": [{
-                "color": "#D63232",
-                "blocks": [
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
-                        }
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "image",
-                        "title": {
-                            "type": "plain_text",
-                            "text": picpath[0],
-                            "emoji": True
-                        },
-                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
-                        "alt_text": picpath[0]
-                    }
-                ]
-            }]
-        })
-        picpath = capture_grafana(grafana_dict["load"])
-        git_push()
-        say({
-            "attachments": [{
-                "color": "#D63232",
-                "blocks": [
-                    {
-                        "type": "section",
-                        "text": {
-                            "type": "mrkdwn",
-                            "text": "⌚Capture Time: "+picpath[1][0:4]+"/"+picpath[1][4:6]+"/"+picpath[1][6:8]+" "+picpath[1][9:11]+":"+picpath[1][11:13]
-                        }
-                    },
-                    {
-                        "type": "divider"
-                    },
-                    {
-                        "type": "image",
-                        "title": {
-                            "type": "plain_text",
-                            "text": picpath[0],
-                            "emoji": True
-                        },
-                        "image_url": "https://github.com/walnuts1018/grafana_slack/raw/main/images/"+ picpath[0],
-                        "alt_text": picpath[0]
-                    }
-                ]
-            }]
-        })
     else:
         pass
+    git_push()
     say({
             "attachments": [{
                 "color": "#D63232",
