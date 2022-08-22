@@ -80,7 +80,7 @@ grafana_dict={
         "sleep": 5
     },
     "cpu": {
-        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=7&kiosk",
+        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&from=now-1h&to=now&viewPanel=7",
         "name": "grafana_cpu",
         "size": (1075, 400),
         "sleep": 30
@@ -92,7 +92,7 @@ grafana_dict={
         "sleep": 30
     },
     "load": {
-        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&kiosk",
+        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&from=now-1h&to=now",
         "name": "grafana_load",
         "size": (1075, 400),
         "sleep": 30
