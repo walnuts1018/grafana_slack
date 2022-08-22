@@ -87,19 +87,19 @@ grafana_dict={
         "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=7&kiosk",
         "name": "grafana_cpu",
         "size": (1075, 400),
-        "sleep": 2
+        "sleep": 5
     },
     "mem": {
         "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=156&kiosk",
         "name": "grafana_mem",
         "size": (1075, 400),
-        "sleep": 2
+        "sleep": 5
     },
     "load": {
         "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&kiosk",
         "name": "grafana_load",
         "size": (1075, 400),
-        "sleep": 2
+        "sleep": 5
     }
     
 }
