@@ -103,10 +103,9 @@ grafana_dict={
 @app.event("message")
 def handle_message_events(message, say):
     if  (not ("attachments" in message)):
-        print("a")
-        pass
+        return
     elif ("Resolved" in message["attachments"][0]["text"]):
-        pass
+        return
     elif ("cpu = high" in message["attachments"][0]["text"]):
         print("cpu")
         picpath = capture_grafana(grafana_dict["cpu"])
@@ -120,7 +119,7 @@ def handle_message_events(message, say):
         print("alert test")
         picpath = capture_grafana(grafana_dict["cpu"])
     else:
-        pass
+        return
     git_push()
     say({
             "attachments": [{
