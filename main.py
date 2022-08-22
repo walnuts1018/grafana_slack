@@ -20,7 +20,7 @@ app = App(token=os.environ.get("SLACK_BOT_TOKEN"))
 
 def git_push():
     repo = git.Repo()
-    
+
     #Commit(サブディレクトリ含めて全て)
     repo.git.add('.')
     repo.git.commit('.','-m','[add] Grafama images')
@@ -102,7 +102,9 @@ grafana_dict={
 
 @app.event("message")
 def handle_message_events(message, say):
-    if "cpu_all = high" in message["attachments"][0]["text"]:
+    if "Resolved" in message["attachments"][0]["text"]:
+        pass
+    elif "cpu_all = high" in message["attachments"][0]["text"]:
         print("cpu")
         picpath = capture_grafana(grafana_dict["cpu"])
     elif "mem = high" in message["attachments"][0]["text"]:
