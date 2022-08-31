@@ -68,31 +68,31 @@ def capture_grafana(grafana_dict):
 grafana_dict={
     "long":
     {
-        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&kiosk",
+        "url": "http://100.115.30.45:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&kiosk",
         "name": "grafana_long",
         "size": (1920, 2300),
         "sleep": 20
     },
     "short": {
-        "url": "http://100.76.36.63:3000/d/rYdddlPWsa/222?orgId=1&refresh=1m&kiosk",
+        "url": "http://100.115.30.45:3000/d/rYdddlPWsa/222?orgId=1&refresh=1m&kiosk",
         "name": "grafana_short",
         "size": (1075, 400),
         "sleep": 5
     },
     "cpu": {
-        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&from=now-1h&to=now&viewPanel=7",
+        "url": "http://100.115.30.45:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&from=now-1h&to=now&viewPanel=7",
         "name": "grafana_cpu",
         "size": (1075, 400),
         "sleep": 30
     },
     "mem": {
-        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=156&kiosk",
+        "url": "http://100.115.30.45:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=156&kiosk",
         "name": "grafana_mem",
         "size": (1075, 400),
         "sleep": 30
     },
     "load": {
-        "url": "http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&from=now-1h&to=now",
+        "url": "http://100.115.30.45:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1&viewPanel=13&from=now-1h&to=now",
         "name": "grafana_load",
         "size": (1075, 400),
         "sleep": 30
@@ -174,10 +174,10 @@ def grafana(ack, respond, command, say):
         })
         if (userInput[0]=="long"):
             picpath = capture_grafana(grafana_dict["long"])
-            origin_url="Image from http://100.76.36.63:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1"
+            origin_url="Image from http://100.115.30.45:3000/d/xfpJB9FGz/1-node-exporter-for-prometheus-dashboard-en-20201010?orgId=1"
         elif(userInput[0]=="short"):
             picpath = capture_grafana(grafana_dict["short"])
-            origin_url="Image from http://100.76.36.63:3000/d/rYdddlPWsa/222?orgId=1&refresh=1m"
+            origin_url="Image from http://100.115.30.45:3000/d/rYdddlPWsa/222?orgId=1&refresh=1m"
         git_push()
         say({
             "attachments": [{
